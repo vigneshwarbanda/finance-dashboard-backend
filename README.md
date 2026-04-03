@@ -112,7 +112,7 @@ src/
 ### 1. Clone repository
 
 ```bash
-git clone <your-repo-link>
+git clone <repo-link>
 cd finance-dashboard-backend
 ```
 
