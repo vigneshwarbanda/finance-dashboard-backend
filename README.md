@@ -248,28 +248,21 @@ http://localhost:5000
 
 A Postman collection is included covering:
 
+### Positive Tests
 * Authentication
 * User management
 * Record operations
 * Dashboard endpoints
 * RBAC validation
 
-### ⚠️ Note on Validation Testing
 
-The collection includes:
+### Negative Tests
+- Invalid email format → 400
+- Empty password → 400
+- Unauthorized access → 401
+- Forbidden access (RBAC) → 403
+- Invalid ObjectId → 400
 
-* Negative amount validation test
-* RBAC failure tests
-* Invalid ID tests
-
-However, **not all validation cases are exhaustively tested**, such as:
-
-* invalid email formats
-* weak passwords
-* invalid roles/status values
-* missing required fields in all scenarios
-
-The backend validation logic supports these cases, but the Postman collection focuses on demonstrating representative validation scenarios rather than covering every edge case.
 
 ---
 

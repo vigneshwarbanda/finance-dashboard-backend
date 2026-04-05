@@ -1281,6 +1281,240 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Negative Testes",
+      "item": [
+        {
+          "name": "Invalid Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{analystToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"test\",\r\n  \"email\": \"invalid-email\",\r\n  \"password\": \"Password123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Empty Password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"user@example.com\",\r\n  \"password\": \"\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "No Token",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer invalidtoken",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"user@example.com\",\r\n  \"password\": \"wrongpass\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/records",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "records"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Wrong Credentials",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer Invalidtoken",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"vi1@example.com\",\r\n  \"password\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid token",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "forbiddeb access",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{viewerToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/Users/123",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Users",
+                "123"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Objectid",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{viewerToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/records/123",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "records",
+                "123"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "missing request field",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/records",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "records"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "negative amount",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"amount\": -500,\r\n  \"type\": \"expense\",\r\n  \"category\": \"Food\",\r\n  \"date\": \"2026-04-20\",\r\n  \"note\": \"Negative amount test\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/records",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "records"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "event": [
